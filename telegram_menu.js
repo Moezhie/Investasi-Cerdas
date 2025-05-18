@@ -2,7 +2,7 @@ async function sendTelegramMenu() {
     const url = `https://api.telegram.org/bot${7872065476:AAGZL0Dpb-Ni6j2MWoZFQwryqRUl7Catvsk}/sendMessage`;
 
     const messageData = {
-        chat_id: Investasicerdasbot,
+        chat_id: "Investasicerdasbot",
         text: "📊 Menu Investasi:\nPilih opsi di bawah untuk melihat data terkini:",
         reply_markup: {
             inline_keyboard: [
