@@ -1,19 +1,43 @@
+// telegram_notifications.js
+// Pastikan file 'telegram.js' sudah di-load atau fungsi sendTelegramMessage tersedia
+
+// Fungsi untuk mengirim notifikasi setiap 1 jam (update pasar simulasi)
 async function hourlyNotification() {
-    const marketData = await fetch("https://api.example.com/market-update").then(res => res.json());
-    const message = `📈 Update Pasar (1 Jam)\nEmas: Rp${marketData.goldPrice}\nBTC: $${marketData.cryptoPrice}\nAAPL: $${marketData.stockPrice}`;
-    
-    sendTelegramMessage(message);
+  // Data pasar simulasi; ganti dengan API aktual sesuai kebutuhan
+  const marketData = {
+    goldPrice: "700,000",
+    cryptoPrice: "43,200",
+    stockPrice: "170"
+  };
+  
+  const message = `📈 Update Pasar (1 Jam):
+Emas: Rp${marketData.goldPrice}
+BTC: $${marketData.cryptoPrice}
+AAPL: $${marketData.stockPrice}`;
+  
+  await sendTelegramMessage(message);
 }
 
+// Fungsi untuk mengirim laporan harian setiap 24 jam (data simulasi)
 async function dailyNotification() {
-    const marketSummary = await fetch("https://api.example.com/daily-summary").then(res => res.json());
-    const message = `📊 Laporan Harian\n📉 Perubahan harga:\nEmas: ${marketSummary.goldChange}%\nBTC: ${marketSummary.cryptoChange}%\nAAPL: ${marketSummary.stockChange}%\n💰 Rekomendasi: ${marketSummary.recommendation}`;
-    
-    sendTelegramMessage(message);
+  // Data ringkasan pasar simulasi; ganti dengan API asli jika sudah tersedia
+  const marketSummary = {
+    goldChange: "1.2",
+    cryptoChange: "2.3",
+    stockChange: "-0.5",
+    recommendation: "Beli saham AAPL"
+  };
+  
+  const message = `📊 Laporan Harian:
+Emas: ${marketSummary.goldChange}%
+BTC: ${marketSummary.cryptoChange}%
+AAPL: ${marketSummary.stockChange}%
+💰 Rekomendasi: ${marketSummary.recommendation}`;
+  
+  await sendTelegramMessage(message);
 }
 
-// Jalankan notifikasi setiap 1 jam
-setInterval(hourlyNotification, 3600000); // 1 Jam
-
-// Jalankan notifikasi setiap 24 jam
-setInterval(dailyNotification, 86400000); // 24 Jam
+// Jalankan notifikasi secara otomatis:
+// Setiap 1 jam (3600000 ms) dan setiap 24 jam (86400000 ms)
+setInterval(hourlyNotification, 3600000);
+setInterval(dailyNotification, 86400000);
